@@ -6,9 +6,8 @@ const robotoFlex = Roboto_Flex({
   variable: "--font-roboto-flex",
   subsets: ["latin"],
   display: "swap",
-  axes: ["wdth", "slnt", "opsz" ]
+  axes: ["wdth", "slnt","opsz" ]
 });
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${robotoFlex.variable} antialiased`}
-      >
+      <body  className={`${robotoFlex.variable} antialiased`}>
+    
+      
         {children}
       </body>
     </html>
