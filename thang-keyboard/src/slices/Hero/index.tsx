@@ -1,7 +1,11 @@
+"use client"
+
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { Bounded } from "@/components/Bounded";
+import { Canvas } from "@react-three/fiber";
+import Scene from "@/slices/Hero/Scene"
 
 /**
  * Props for `Hero`.
@@ -20,17 +24,19 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     >
       <div className=" hero-scene sticky pointer-events-none top-0 h-dvh w-full ">
 
-        {/* Canvas ở trong này */}
+        <Canvas shadows="soft" >
+          <Scene/>
+        </Canvas>
       </div>
       <div className="hero-content absolute inset-x-0 top-0 h-dvh"> 
      <Bounded fullWidth className="absolute top-18 inset-x-0 md:top-24 md:left-[8vw]" > 
      
      <PrismicRichText field={slice.primary.heading} components={{
        heading2: ({children}) =>(
-         <h1 className="hero-heading font-black-slanted text-6xl leading-[0.8] uppercase
-         sm:text-7xl lg:text-8xl" >
-          {children}
-         </h1>
+         <h1 className={`hero-heading font-black-slanted text-6xl leading-[0.8] uppercase
+            sm:text-7xl lg:text-8xl`}>
+            {children}
+          </h1>
       )
     }}  />
 
@@ -44,13 +50,13 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       <div className="max-w-md" >
      <PrismicRichText field={slice.primary.body} components={{
        heading2: ({children}) =>(
-         <h2 className="font-bold-slanted mb-1 text-4xl uppercase lg:mb-2 lg:text-6xl " > {children} </h2>
+         <h2 className={"font-bold-slanted mb-1 text-4xl uppercase lg:mb-2 lg:text-6xl "} > {children} </h2>
         )
       }} />
        </div>
 
-     <button className="font-bold-slanted flex w-fit cursor-pointer items-center gap-1 rounded bg-[#01A7E1] px-3 py-1
-     text-2xl uppercase transition disabled:grayscale group" >
+     <button className={`font-bold-slanted flex w-fit cursor-pointer items-center gap-1 rounded bg-[#01A7E1] px-3 py-1
+     text-2xl uppercase transition disabled:grayscale group`} >
       {slice.primary.buy_button_text}
       <span className="group-hover:translate-x-1 transition " >{">"}</span>
      </button>
