@@ -23,7 +23,6 @@ export default function RootLayout({
     <html lang="en">
       <body  className={`${robotoFlex.variable} antialiased`}>
     
-      
         {children}
       </body>
     </html>
