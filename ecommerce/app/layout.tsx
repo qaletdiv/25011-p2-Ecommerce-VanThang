@@ -5,8 +5,8 @@ import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
   title: {
-    template: "%S - Shopcart online store",
-    default: "Shopcart online store"
+    template: "%S - ShopCart",
+    default: "ShopCart"
   },
   description: "Shopcart online store, Your one stop shop for all your needs",
 };
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="mdl-js">
       <body
         className="font-poppins antialiased"
       >
