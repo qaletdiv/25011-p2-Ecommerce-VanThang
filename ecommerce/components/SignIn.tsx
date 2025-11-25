@@ -1,12 +1,16 @@
-import React from 'react'
+// import { SignInButton } from '@clerk/nextjs'
+// import React from 'react'
 
-const SignIn = () => {
-  return (
-    <button className="text-sm font-semibold
-    hover:cursor-pointer hover:text-darkColor hoverEffect" >
-        Login
-    </button>
-  )
-}
+// const SignIn = () => {
+//   return (
+//     <SignInButton>
+//       <button className="text-sm font-semibold
+//     hover:cursor-pointer hover:text-darkColor hoverEffect" >
+//         Login
+//     </button>
+//     </SignInButton>
+    
+//   )
+// }
 
-export default SignIn
+// export default SignIn

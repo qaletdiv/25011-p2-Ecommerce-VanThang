@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
 import Footer from "../components/Footer"
+import {ClerkProvider} from "@clerk/nextjs"
+import HeaderServer from "@/components/HeaderServer";
 
 export const metadata: Metadata = {
   title: {
@@ -17,14 +18,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en" className="mdl-js">
       <body
         className="font-poppins antialiased"
-      >
-        <Header/>
+        >
+        <HeaderServer/>
         {children}
         <Footer/>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
