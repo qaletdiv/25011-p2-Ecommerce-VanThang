@@ -1,14 +1,9 @@
-// app/components/SignInClient.tsx
-'use client'; // Bắt buộc để dùng state, event, DOM
+'use client';
 
 import React from 'react';
 import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/clerk-react';
 
-interface Props {
-  user: any;
-}
-
-const SignInClient: React.FC<Props> = ({ user }) => {
+const SignInClient = () => {
   return (
     <>
       <SignedIn>
@@ -17,8 +12,7 @@ const SignInClient: React.FC<Props> = ({ user }) => {
 
       <SignedOut>
         <SignInButton mode="modal">
-          <button className="text-sm font-semibold
-    hover:cursor-pointer hover:text-darkColor hoverEffect">
+          <button className="text-sm font-semibold hover:cursor-pointer hover:text-darkColor hoverEffect">
             Login
           </button>
         </SignInButton>

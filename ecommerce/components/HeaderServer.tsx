@@ -27,7 +27,7 @@ const Header = async () => {
           <SearchBar />
           <CartIcon />
           <FavoriteButton />
-          <SignInClient user={user} /> {/* Gọi client component */}
+          <SignInClient  /> {/* Gọi client component */}
         </div>
       </Container>
     </header>

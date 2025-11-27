@@ -23,9 +23,13 @@ export default function RootLayout({
       <body
         className="font-poppins antialiased"
         >
+          <div className="flex flex-col min-h-screen " >
         <HeaderServer/>
+          <main className="flex flex-1" >
         {children}
+          </main>   
         <Footer/>
+          </div>
       </body>
     </html>
     </ClerkProvider>
