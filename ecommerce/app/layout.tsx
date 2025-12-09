@@ -1,37 +1,19 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Footer from "../components/Footer"
-import {ClerkProvider} from "@clerk/nextjs"
-import HeaderServer from "@/components/HeaderServer";
+import { Poppins } from "next/font/google";
 
-export const metadata: Metadata = {
-  title: {
-    template: "%S - ShopCart",
-    default: "ShopCart"
-  },
-  description: "Shopcart online store, Your one stop shop for all your needs",
-};
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["300"],
+  display: "swap",
+});
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <ClerkProvider>
-    <html lang="en" className="mdl-js">
-      <body
-        className="font-poppins antialiased"
-        >
-          <div className="flex flex-col min-h-screen " >
-        <HeaderServer/>
-          <main >
-        {children}
-          </main>   
-        <Footer/>
-          </div>
-      </body>
+const RootLayout = ({children} : {children: React.ReactNode} ) => {
+    return <html lang="en" >
+        <body className={`antialiased ${poppins.variable}}`} >
+        
+            {children}
+        </body>
     </html>
-    </ClerkProvider>
-  );
 }
+
+export default RootLayout
