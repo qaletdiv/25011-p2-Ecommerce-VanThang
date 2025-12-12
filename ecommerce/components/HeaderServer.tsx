@@ -11,7 +11,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import SignInClient from './SignInClient';
 
 const Header = async () => {
-  const user = await currentUser(); // Server-side fetch user
+  const user = await currentUser(); 
 
   return (
     <header className="bg-white py-5 ">

@@ -1,5 +1,5 @@
 import express from "express"
-import usersData from "../data/user"
+import { usersData } from "../data/user.js"
 
 const router = express.Router();
 
