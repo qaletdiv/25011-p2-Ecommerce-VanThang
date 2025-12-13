@@ -1,35 +1,33 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Footer from "../../components/Footer"
-import {ClerkProvider} from "@clerk/nextjs"
+import Footer from "@/components/Footer";
 import HeaderServer from "@/components/HeaderServer";
+import Providers from "../providers";
 
 export const metadata: Metadata = {
   title: {
-    template: "%S - ShopCart",
-    default: "ShopCart"
+    template: "%s - ShopCart",
+    default: "ShopCart",
   },
   description: "Shopcart online store, Your one stop shop for all your needs",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <ClerkProvider>
-   
-        
-        
-          <div className="flex flex-col min-h-screen " >
-        <HeaderServer/>
-          <main >
-        {children}
-          </main>   
-        <Footer/>
+    <html lang="en">
+      <body>
+        <Providers>
+          <div className="flex flex-col min-h-screen">
+            <HeaderServer />
+            <main>{children}</main>
+            <Footer />
           </div>
-     
-    </ClerkProvider>
+        </Providers>
+      </body>
+    </html>
   );
 }
