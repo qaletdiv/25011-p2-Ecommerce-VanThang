@@ -8,7 +8,6 @@ const SignInClient = () => {
   return (
     <>
 
-
       <SignedIn>
         <UserButton /> {/* Nếu đã đăng nhập */}
       </SignedIn>

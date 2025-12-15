@@ -20,13 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>
           <div className="flex flex-col min-h-screen">
             <HeaderServer />
             <main>{children}</main>
             <Footer />
           </div>
-        </Providers>
       </body>
     </html>
   );

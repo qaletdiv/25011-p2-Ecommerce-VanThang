@@ -3,9 +3,10 @@ import {
   getProductsApi,
   addProductApi,
   deleteProductApi,
-} from "../../api/productsApi";
+} from "../../api/productsAPi";
+import type { Product } from "./productsSlice";
 
-export const fetchProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk<Product[]>(
   "products/fetch",
   async () => {
     const res = await getProductsApi();
@@ -13,7 +14,7 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-export const createProduct = createAsyncThunk(
+export const createProduct = createAsyncThunk<Product, Product>(
   "products/create",
   async (product) => {
     const res = await addProductApi(product);
@@ -21,7 +22,7 @@ export const createProduct = createAsyncThunk(
   }
 );
 
-export const removeProduct = createAsyncThunk(
+export const removeProduct = createAsyncThunk<number, number>(
   "products/remove",
   async (id) => {
     await deleteProductApi(id);

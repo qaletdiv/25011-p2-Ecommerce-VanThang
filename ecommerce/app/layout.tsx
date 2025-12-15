@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import Providers from "./providers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -7,12 +8,18 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const RootLayout = ({children} : {children: React.ReactNode} ) => {
-    return <html lang="en" >
-        <body className={`antialiased ${poppins.variable}}`} >    
-            {children}
-        </body>
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className={`antialiased ${poppins.variable}`}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
+  );
 }
-
-export default RootLayout
