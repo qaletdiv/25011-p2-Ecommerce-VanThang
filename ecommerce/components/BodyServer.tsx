@@ -20,7 +20,8 @@ const BodyServer = () => {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {items.map((p) => (
-        <div key={p.id}>{p.name}</div>
+        <div key={p.id}>{p.name}-{p.price}</div>
+        
       ))}
     </div>
   );

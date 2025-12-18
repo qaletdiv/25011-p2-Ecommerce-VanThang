@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchProducts, createProduct, removeProduct } from "./productsThunk";
 
-/* =======================
-   TYPE
-======================= */
+
 export interface Product {
   id: number;
   name: string;

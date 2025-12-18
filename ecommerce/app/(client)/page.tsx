@@ -1,3 +1,4 @@
+import BodyServer from "@/components/BodyServer";
 import Container from "@/components/Container";
 import HeaderBanner from "@/components/HeaderBanner";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ export default function Home() {
   return (
     <Container>
       <HeaderBanner/>
+      <BodyServer/>
     </Container>
   );
 }
