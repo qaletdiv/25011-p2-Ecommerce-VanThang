@@ -8,17 +8,9 @@ const SignInClient = () => {
   return (
     <>
 
-      <SignedIn>
-        <UserButton /> {/* Nếu đã đăng nhập */}
-      </SignedIn>
-
-      <SignedOut>
-        <SignInButton mode="modal">
           <button className="text-sm font-semibold hover:cursor-pointer hover:text-darkColor hoverEffect">
             Login
           </button>
-        </SignInButton>
-      </SignedOut>
     </>
   );
 };
