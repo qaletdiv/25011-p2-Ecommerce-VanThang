@@ -8,7 +8,10 @@ export default function Home() {
   return (
     <Container>
       <HeaderBanner/>
+      <div className="py-10">
       <BodyServer/>
+
+      </div>
     </Container>
   );
 }

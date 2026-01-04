@@ -9,6 +9,7 @@ import FavoriteButton from './FavoriteButton';
 import MobileMenu from './MobileMenu';
 import { currentUser } from '@clerk/nextjs/server';
 import SignInClient from './SignInClient';
+import RegisterClient from './RegisterClient';
 
 const Header = async () => {
   const user = await currentUser(); 
@@ -28,6 +29,7 @@ const Header = async () => {
           <CartIcon />
           <FavoriteButton />
           <SignInClient  /> {/* Gọi client component */}
+          <RegisterClient/>
         </div>
       </Container>
     </header>

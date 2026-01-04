@@ -6,6 +6,7 @@ export interface Product {
   id: number;
   name: string;
   price: number;
+  image: string;
 }
 
 interface ProductsState {
@@ -14,18 +15,14 @@ interface ProductsState {
   error: string | null;
 }
 
-/* =======================
-   INITIAL STATE
-======================= */
+
 const initialState: ProductsState = {
   items: [],
   loading: false,
   error: null,
 };
 
-/* =======================
-   SLICE
-======================= */
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
