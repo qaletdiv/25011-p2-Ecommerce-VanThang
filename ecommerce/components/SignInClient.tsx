@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { loginThunk } from "../lib/redux/auth/authThunk";
+import Link from "next/link";
 
 const SignInClient = () => {
   const dispatch = useAppDispatch();
@@ -19,9 +20,9 @@ const SignInClient = () => {
 
   if (user) {
     return (
-      <span className="text-sm font-semibold">
+      <Link href={"/shop"} className="text-sm font-semibold">
         Hi, {user.name}
-      </span>
+      </Link>
     );
   }
 

@@ -8,29 +8,52 @@ import { useDispatch } from 'react-redux'
 const RegisterClient = () => {
 
     const dispatch = useAppDispatch()
-    const {loading, error} = useAppSelector((state) => state.auth ) 
+    const {loading, error, user} = useAppSelector((state) => state.auth ) 
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword ] = useState("")
+
+    const [open, setOpen] = useState(false)
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(registerThunk({ name, email, password }));
   };
 
+  React.useEffect(() => {
+  if (user) {
+    setOpen(false);
+  }
+}, [user]);
+
+  if(user) {
+    return null
+  }
+
   return (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-64">
+
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="text-sm font-semibold hover:cursor-pointer hover:text-darkColor hoverEffect"
+      >
+        Register
+      </button>
+
+    
+      {open && (
+        <form onSubmit={handleSubmit} className="absolute right-0 mt-2 w-64 p-4 bg-white shadow-lg rounded-md flex flex-col gap-3 z-50">
       <input
         placeholder="Name"
-        className="border px-3 py-2"
+        className="border px-3 py-2 rounded text-sm"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
       <input
         placeholder="Email"
-        className="border px-3 py-2"
+        className="border px-3 py-2 rounded text-sm"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -38,7 +61,7 @@ const RegisterClient = () => {
       <input
         type="password"
         placeholder="Password"
-        className="border px-3 py-2"
+        className="border px-3 py-2 rounded text-sm"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
@@ -49,6 +72,11 @@ const RegisterClient = () => {
         {loading ? "Registering..." : "Register"}
       </button>
     </form>
+
+      ) }
+
+      
+   </div>
   )
 }
 

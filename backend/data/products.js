@@ -1,6 +1,6 @@
 export const productsData = [
   { id: 1, name: "iPhone 11", price: 900, image: "/images/products/product_1.png" },
-  { id: 2, name: "iPhone 11 Pro", price: 1100, image: "/images/products/product_2.png" },
+  { id: 2, name: "iPhone 11 Pro", price: 1100, image: "/images/products/product_2.jpg" },
   { id: 3, name: "iPhone 11 Pro Max", price: 1200, image: "/images/products/product_3.png" },
   { id: 4, name: "iPhone 12", price: 1000, image: "/images/products/product_4.png" },
   { id: 5, name: "iPhone 12 Pro", price: 1200, image: "/images/products/product_5.png" },

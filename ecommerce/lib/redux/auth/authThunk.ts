@@ -9,6 +9,8 @@ export const loginThunk = createAsyncThunk(
   ) => {
     try {
       const res = await loginApi({ email, password });
+
+
       return res.data; 
     } catch (err: any) {
       return rejectWithValue(
@@ -24,8 +26,10 @@ export const registerThunk = createAsyncThunk(
     try{
       const res = await registerApi({name, email,password});
       return res.data
-    } catch(err) {
-      return rejectWithValue("Email đã tồn tại")
+    } catch(err:any) {
+       return rejectWithValue(
+        err.response?.data?.message || "Login failed"
+      );
     }
   }
 )
