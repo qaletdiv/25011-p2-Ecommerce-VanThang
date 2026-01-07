@@ -1,6 +1,7 @@
 import express from "express";
 import { usersData } from "../data/user.js";
 import jwt from "jsonwebtoken"
+import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 const JWT_SECRET = "MY_SECRET_KEY" 
@@ -24,11 +25,17 @@ router.post("/login", (req, res) => {
    {
     expiresIn: "1h"
    }
+  );
 
-  )
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 60*60*1000,
+    secure: false,
+    path: "/"
+  }  )
 
   res.json({
-    token,
     user: {
      id: user.id,
     name: user.name,
@@ -38,6 +45,7 @@ router.post("/login", (req, res) => {
    
   });
 });
+
 router.post("/register", (req, res) => {
   const {email, password, name} = req.body
 
@@ -52,16 +60,22 @@ router.post("/register", (req, res) => {
     password,
     role: "user"
    }
+
    const token = jwt.sign(
     {id:newUser.id},
     JWT_SECRET, 
     {expiresIn: "1h"}
    )
 
+   res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 60*60*1000 
+   })
+
    usersData.push(newUser);
 
    res.status(201).json({
-     token,
      user: {
       id: newUser.id,
       name: newUser.name,
@@ -72,6 +86,22 @@ router.post("/register", (req, res) => {
    })
 
 } )
+
+router.post("/logout", (req,res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    sameSite: "lax",
+    path: "/"
+  })
+
+  res.json({message: "Đã đăng xuất"})
+
+}  ) 
+
+router.get("/me", authMiddleware, (req, res) => {
+  res.json({ user: req.user });
+});
+
 
 
 export default router;

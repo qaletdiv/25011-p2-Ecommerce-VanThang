@@ -1,4 +1,4 @@
-// app/components/Header.tsx
+
 import React from 'react';
 import Container from './Container';
 import { Logo } from './Logo';
@@ -7,12 +7,12 @@ import { SearchBar } from './SearchBar';
 import CartIcon from './CartIcon';
 import FavoriteButton from './FavoriteButton';
 import MobileMenu from './MobileMenu';
-import { currentUser } from '@clerk/nextjs/server';
+import { useAppSelector } from '@/lib/redux/hooks';
+import LogoutClient from './LogoutClient';
 import SignInClient from './SignInClient';
-import RegisterClient from './RegisterClient';
 
 const Header = async () => {
-  const user = await currentUser(); 
+
 
   return (
     <header className="bg-white py-5 ">
@@ -28,8 +28,8 @@ const Header = async () => {
           <SearchBar />
           <CartIcon />
           <FavoriteButton />
-          <SignInClient  /> {/* Gọi client component */}
-          <RegisterClient/>
+           <SignInClient/>
+          <LogoutClient/>
         </div>
       </Container>
     </header>

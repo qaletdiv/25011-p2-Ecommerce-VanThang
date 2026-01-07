@@ -4,10 +4,17 @@ import authRouter from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import productsRoute from "./routes/products.js";
 import cartsRoute from "./routes/carts.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
-app.use(cors());
+
+
+app.use(cookieParser())
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true
+}));
 app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/users", usersRoute);
