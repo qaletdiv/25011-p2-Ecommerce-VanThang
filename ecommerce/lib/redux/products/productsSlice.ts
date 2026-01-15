@@ -9,6 +9,7 @@ export interface Product {
   image: string;
   category: string;
   type: string;
+  status: string;
 }
 
 interface ProductsState {
