@@ -1,4 +1,4 @@
-import BodyServer from "@/components/BodyServer";
+import BodyServer from "@/components/BodyClient";
 import Container from "@/components/Container";
 import HeaderBanner from "@/components/HeaderBanner";
 import { Button } from "@/components/ui/button";

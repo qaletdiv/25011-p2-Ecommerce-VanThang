@@ -20,11 +20,11 @@ export default function RegisterPage() {
     dispatch(registerThunk({ name, email, password }));
   };
 
-  useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
-  }, [user]);
+ useEffect(() => {
+  if (user) {
+    router.push("/");
+  }
+}, [user, router]);
 
   return (
     <div className="flex min-h-screen items-center justify-center">

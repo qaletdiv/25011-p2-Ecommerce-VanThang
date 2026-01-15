@@ -5,11 +5,13 @@ interface AuthState {
   user: any | null;
   loading: boolean;
   error: string | null;
+   token: string | null;
 }
 
 const initialState: AuthState = {
   user: null,
   loading: false,
+   token: null,
   error: null,
 };
 
@@ -20,6 +22,7 @@ const authSlice = createSlice({
     clearAuth(state) {
       state.user = null;
       state.error = null;
+        state.token = null;
     },
   },
   extraReducers: (builder) => {
@@ -31,6 +34,7 @@ const authSlice = createSlice({
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
+        state.token = action.payload.token;
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.loading = false;
@@ -40,10 +44,12 @@ const authSlice = createSlice({
       .addCase(registerThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
+
       })
       .addCase(registerThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
+         state.token = action.payload.token;
       })
       .addCase(registerThunk.rejected, (state, action) => {
         state.loading = false;
@@ -56,9 +62,11 @@ const authSlice = createSlice({
       .addCase(getMeThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
+          state.token = action.payload.token;
       })
       .addCase(getMeThunk.rejected, (state) => {
         state.loading = false;
+        state.token = null;
         state.user = null;
       });
   },

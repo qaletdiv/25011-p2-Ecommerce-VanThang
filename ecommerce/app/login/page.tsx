@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function LoginPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { loading, error, user } = useAppSelector((state) => state.auth);
+  const { loading, error, token, user } = useAppSelector((state) => state.auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,11 +19,11 @@ export default function LoginPage() {
     dispatch(loginThunk({ email, password }));
   };
 
-  useEffect(() => {
-    if (user && !loading ) {
-      router.push("/");
-    }
-  }, [user, loading]);
+ useEffect(() => {
+  if (user) {
+    router.push("/");
+  }
+}, [user, router]);
 
   return (
     <div className="flex min-h-screen items-center justify-center">

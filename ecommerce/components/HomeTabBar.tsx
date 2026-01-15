@@ -11,12 +11,11 @@ const HomeTabBar = ({ selectedTab, onTabSelect }: Props) => {
     <div className="flex items-center justify-between flex-wrap gap-5">
       <div className="flex items-center gap-1.5 text-sm font-semibold">
         {productType.map((item) => {
-          const isActive = selectedTab === item.title
-
+          const isActive = selectedTab === item.value
           return (
             <button
               key={item.title}
-              onClick={() => onTabSelect(item.title)}
+              onClick={() => onTabSelect(item.value)}
               className={`border px-4 py-1.5 md:px-6 md:py-2 rounded-full hoverEffect
                 ${
                   isActive
