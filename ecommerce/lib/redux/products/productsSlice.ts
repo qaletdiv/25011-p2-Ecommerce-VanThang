@@ -10,6 +10,7 @@ export interface Product {
   category: string;
   type: string;
   status: string;
+  stock: number;
 }
 
 interface ProductsState {

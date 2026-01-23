@@ -76,6 +76,7 @@ router.post("/register", (req, res) => {
    usersData.push(newUser);
 
    res.status(201).json({
+    message: "Đăng ký thành công",
      user: {
       id: newUser.id,
       name: newUser.name,
@@ -84,7 +85,6 @@ router.post("/register", (req, res) => {
      }
       
    })
-
 } )
 
 router.post("/logout", (req,res) => {

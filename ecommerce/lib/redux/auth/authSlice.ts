@@ -6,6 +6,7 @@ interface AuthState {
   loading: boolean;
   error: string | null;
    token: string | null;
+   success: string | null
 }
 
 const initialState: AuthState = {
@@ -13,6 +14,7 @@ const initialState: AuthState = {
   loading: false,
    token: null,
   error: null,
+  success: null,
 };
 
 const authSlice = createSlice({
@@ -50,6 +52,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
          state.token = action.payload.token;
+         state.success = action.payload.message;
       })
       .addCase(registerThunk.rejected, (state, action) => {
         state.loading = false;
@@ -62,7 +65,6 @@ const authSlice = createSlice({
       .addCase(getMeThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
-          state.token = action.payload.token;
       })
       .addCase(getMeThunk.rejected, (state) => {
         state.loading = false;

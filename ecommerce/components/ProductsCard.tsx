@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import { Product } from '@/lib/redux/products/productsSlice';
 import Link from 'next/link';
-import { Flame } from 'lucide-react';
+import { Flame, StarIcon } from 'lucide-react';
 import AddToWishListButton from './AddToWishListButton';
+import { Title } from './ui/text';
+import { AddToCartButton } from './AddToCartButton';
 
 interface Props {
   product: Product
@@ -11,22 +13,23 @@ interface Props {
 const ProductsCard = ({product}:Props ) => {
   return (
     <div className='text-sm border border-dark_blue/20 rounded-md bg-white group' >
-        <div className='relative group overflow-hidden bg-shop-light-bg' >
-            {/* {product?.image && (
+        <div className='relative group overflow-hidden bg-shop-light-bg  ' >
+           <Link key={product.id} href={`/products/${product.id}`} >
+            {product?.image && (
                 <Image                 
                     src={product.image}
                     alt={product.name}
                     loading='lazy'
                     width={300}
                     height={300}
+                    unoptimized
                 />
-            )} */}
-
-            <Link key={product.id} href={`/products/${product.id}`} >
-            <div >          
+            )}
+     
+            {/* <div >          
                 <img src={product.image} alt={product.name}/>
                  {product.name}-{product.price}
-           </div>
+           </div> */}
             </Link>
             <AddToWishListButton product={product} />
             {product.status === "sale" && (
@@ -58,8 +61,34 @@ const ProductsCard = ({product}:Props ) => {
             </div>       
             <div className='p-3' >
                 {product?.category && (
-                  <p> {product?.category} </p>
-                ) } 
+                  <p className='uppercase line-clamp-1 text-xs text-shop_light-text ' > 
+                    {product?.category} 
+                  </p>
+                )} 
+                <Title className='text-sm line-clamp-1' >{product?.name}</Title>
+                <div className=' flex items-center gap-2' >
+                  <div className='flex items-center' >
+                    {[...Array(5)].map((_,index) => (
+                      <StarIcon 
+                      size={13}
+                      key={index} 
+                      className={index < 4 ?"text-shop_light_green" : "text-shop_light-text"   } 
+                      fill={index < 4 ? "#93D991"  : "#ababab" }
+                      />
+                    ) ) }
+                  </div>
+                  <p className='text-shop_light-text text-xs tracking-wide ' >5 Reviews </p>
+                </div>
+                <div className='flex items-center gap-2 tracking-wide ' >
+                  <p className='font-semibold' >In Stock</p>
+                  <p className='text-shop_light-text/80' > {product?.stock > 0 ? product.stock : "unavailable" } </p>
+                </div>
+                <div >
+                    <p className='font-semibold  ' >
+                      ${product.price}
+                    </p> 
+                </div>
+                <AddToCartButton product= {product} className='  rounded-full' />
             </div>
     </div>
   )

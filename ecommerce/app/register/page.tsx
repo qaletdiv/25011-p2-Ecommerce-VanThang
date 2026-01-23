@@ -1,5 +1,5 @@
 "use client";
-
+import "../globals.css";
 import { registerThunk } from "@/lib/redux/auth/authThunk";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export default function RegisterPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { loading, error, user } = useAppSelector((state) => state.auth);
+  const { loading, error, user, token, success } = useAppSelector((state) => state.auth);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,17 +17,17 @@ export default function RegisterPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(registerThunk({ name, email, password }));
+    dispatch(registerThunk({ name, email, password}));
   };
 
  useEffect(() => {
-  if (user) {
+  if (token) {
     router.push("/");
   }
-}, [user, router]);
+}, [token]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-gray-400">
       <form
         onSubmit={handleSubmit}
         className="w-80 p-6 bg-white shadow rounded flex flex-col gap-3"
@@ -59,7 +59,8 @@ export default function RegisterPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-
+        {success && <p className="text-green-600 text-sm" >{success}</p> }
+        
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
         <button

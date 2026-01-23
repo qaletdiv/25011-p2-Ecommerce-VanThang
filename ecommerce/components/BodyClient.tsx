@@ -39,12 +39,12 @@ const BodyClient = () => {
       : filterData?.length ?(
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
           {filterData.map((product) => (
+                  
             <AnimatePresence>
-              <motion.div  key={product.id} layout initial={{opacity: 0.2}} animate={{opacity: 1}} exit={{opacity: 0}}  >
+              <motion.div key={product.id}  layout initial={{opacity: 0.2}} animate={{opacity: 1}} exit={{opacity: 0}}  >
                   <ProductsCard  product={product} />
               </motion.div>
             </AnimatePresence>
-
 
             
 

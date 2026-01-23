@@ -6,7 +6,8 @@ const Title = ({children,className} : {
 }   ) => {
     return (
         <>
-            <h2 className={cn("text-2xl md:text-3xl font-bold text-shop_dark_green capitalize tracking-wide font-sans  ",className)} >{children}</h2>
+        {/* text-2xl md:text-3xl */}
+            <h2 className={cn(" font-bold text-shop_dark_green capitalize tracking-wide font-sans  ",className)} >{children}</h2>
         </>
     )
 }

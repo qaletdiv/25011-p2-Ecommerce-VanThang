@@ -21,14 +21,14 @@ export const loginThunk = createAsyncThunk<
 );
 
 export const registerThunk = createAsyncThunk<
-  { user: any; token: string },
+  { user: any; token: string, message: string },
   { name: string; email: string; password: string }
 >(
   "auth/register",
   async ({ name, email, password }, { rejectWithValue }) => {
     try {
       const res = await registerApi({ name, email, password });
-      return { user: res.data.user , token: res.data.token };
+      return { user: res.data.user , token: res.data.token, message: res.data.message };
     } catch (err: any) {
       return rejectWithValue(
         err.response?.data?.message || "Register failed"

@@ -1,5 +1,6 @@
 "use client";
 
+import "../globals.css";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { loginThunk } from "@/lib/redux/auth/authThunk";
 import { useRouter } from "next/navigation";
@@ -26,7 +27,7 @@ export default function LoginPage() {
 }, [user, router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-gray-400 ">
       <form
         onSubmit={handleSubmit}
         className="w-80 p-6 bg-white shadow rounded flex flex-col gap-3"
