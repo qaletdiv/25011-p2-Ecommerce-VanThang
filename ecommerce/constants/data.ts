@@ -27,4 +27,34 @@ export const categoriesData = [
   { title: "Refrigerators", value: "refrigerators" },
   { title: "Others", value: "others" },
 ];
-
+  export const brands = [
+    {
+      id:1,
+      logo: "/images/brands/brand_2.jpg"
+    },
+    {
+      id:2,
+      logo: "/images/brands/brand_3.png"
+    },
+    {
+      id:3,
+      logo: "/images/brands/brand_4.png"
+    },
+    {
+      id:4,
+      logo: "/images/brands/brand_5.png"
+    }
+    ,
+    {
+      id:5,
+      logo: "/images/brands/brand_6.png"
+    },
+    {
+      id:6,
+      logo: "/images/brands/brand_7.png"
+    },
+    {
+      id:7,
+      logo: "/images/brands/brand_8.png"
+    }
+  ]

@@ -83,12 +83,12 @@ const ProductsCard = ({product}:Props ) => {
                   <p className='font-semibold' >In Stock</p>
                   <p className='text-shop_light-text/80' > {product?.stock > 0 ? product.stock : "unavailable" } </p>
                 </div>
-                <div >
+                <div className='pb-2' >
                     <p className='font-semibold  ' >
                       ${product.price}
                     </p> 
                 </div>
-                <AddToCartButton product= {product} className='  rounded-full' />
+                <AddToCartButton product= {product} className='rounded-full' />
             </div>
     </div>
   )
