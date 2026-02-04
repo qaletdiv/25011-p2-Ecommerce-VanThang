@@ -1,6 +1,7 @@
 "use client"
 
 import { logout } from '@/lib/api/authApi';
+import { LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { route } from 'sanity/router';
@@ -16,7 +17,7 @@ const LogoutClient = () => {
     }
 
   return (
-    <button onClick={handleLogout} > Logout </button>
+    <button onClick={handleLogout} > <LogOut className='w-6 h-10'  /> </button>
   )
 }
 

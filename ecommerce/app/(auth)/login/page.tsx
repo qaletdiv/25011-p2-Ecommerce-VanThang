@@ -1,46 +1,38 @@
 "use client";
-import "../globals.css";
-import { registerThunk } from "@/lib/redux/auth/authThunk";
+
+import "../../globals.css";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import Link from "next/link";
+import { loginThunk } from "@/lib/redux/auth/authThunk";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { loading, error, user, token, success } = useAppSelector((state) => state.auth);
+  const { loading, error, token, user } = useAppSelector((state) => state.auth);
 
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(registerThunk({ name, email, password}));
+    dispatch(loginThunk({ email, password }));
   };
 
  useEffect(() => {
-  if (token) {
+  if (user) {
     router.push("/");
   }
-}, [token]);
+}, [user, router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-400">
+    <div className="flex min-h-screen items-center justify-center bg-gray-400 ">
       <form
         onSubmit={handleSubmit}
         className="w-80 p-6 bg-white shadow rounded flex flex-col gap-3"
       >
-        <h1 className="text-lg font-semibold text-center">Register</h1>
-
-        <input
-          placeholder="Name"
-          className="border px-3 py-2 rounded"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <h1 className="text-lg font-semibold text-center">Login</h1>
 
         <input
           type="email"
@@ -59,8 +51,7 @@ export default function RegisterPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {success && <p className="text-green-600 text-sm" >{success}</p> }
-        
+
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
         <button
@@ -68,12 +59,11 @@ export default function RegisterPage() {
           disabled={loading}
           className="bg-black text-white py-2 rounded disabled:opacity-50"
         >
-          {loading ? "Registering..." : "Register"}
+          {loading ? "Logging in..." : "Login"}
         </button>
-        <Link href="/login" className="text-sm underline text-center">
-        Đăng nhập
-         </Link>
+        <Link href="/register" > Đăng ký</Link>
       </form>
+      
     </div>
   );
 }

@@ -26,7 +26,6 @@ const initialState: ProductsState = {
   error: null,
 };
 
-
 const productsSlice = createSlice({
   name: "products",
   initialState,

@@ -19,7 +19,7 @@ const HomeCategories = () => {
                         <div key={product?.id} className='bg-shop-light-bg p-5 flex items-center gap-3 group '  >
                                 <div className='overflow-hidden border
                                 border-shop-orange/30 hover:border-shop-orange hoverEffect w-20 h-20 p-1 ' >
-                                    <Link href={`/products/${product.id}`} >
+                                    <Link href={`/category/${product.id}`} >
                                         <Image  
                                             src={product.image}
                                             alt = "categoryImage"

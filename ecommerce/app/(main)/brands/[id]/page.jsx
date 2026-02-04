@@ -15,7 +15,6 @@ export default function BrandsDetail({params}){
         <>  
         <div > 
             <Image 
-
                 src={brand.logo}
                 alt="BrandsLogo"
                 width={300}
