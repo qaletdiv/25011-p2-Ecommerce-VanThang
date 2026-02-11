@@ -3,6 +3,8 @@ import Providers from "./providers";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import "./globals.css";
+import AuthBootsTrap from "@/components/AuthBootsTrap";
+import { Toaster } from "react-hot-toast";
 
 
 export const metadata: Metadata = {
@@ -34,6 +36,8 @@ export default function RootLayout({
   >
     <Providers>
       <div className=" flex flex-col min-h-screen" >
+        <Toaster position="bottom-right" />
+        <AuthBootsTrap/>
       {children}
       </div>
       </Providers>

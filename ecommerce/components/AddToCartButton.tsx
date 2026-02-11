@@ -1,18 +1,33 @@
+"use client"
 import { Product } from '@/lib/redux/products/productsSlice'
 import React from 'react'
+import toast from "react-hot-toast"
 import { Button } from './ui/button';
 import { ShoppingBag } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks';
+import { addToCart } from '@/lib/redux/carts/cartsThunk';
 interface Props{
     product: Product;
     className?: string
 }
 
 export const AddToCartButton = ({product, className}: Props) => {
-    
+    const dispatch = useAppDispatch();
+    const user = useAppSelector((state) => state.auth.user )
+    const userId = user?.id || user?._id
+    console.log(userId)
     const isOutOfStock = product?.stock === 0 
     const handleAddToCart = () => {
-        window.alert("Add")
+        if(isOutOfStock) return
+        dispatch(addToCart({
+            userId,
+            item: {
+                productId: product.id,
+                quantity: 1
+            }
+        }));
+        toast.success(`${product?.name.substring(0,12)}...added successfully!`)
     }
     return (
     <div>

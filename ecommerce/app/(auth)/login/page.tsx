@@ -6,6 +6,9 @@ import { loginThunk } from "@/lib/redux/auth/authThunk";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { clearAuth } from "@/lib/redux/auth/authSlice";
+import { clearCart } from "@/lib/redux/carts/cartsSlice";
+import { fetchCart } from "@/lib/redux/carts/cartsThunk";
 
 export default function LoginPage() {
   const dispatch = useAppDispatch();
@@ -22,9 +25,12 @@ export default function LoginPage() {
 
  useEffect(() => {
   if (user) {
-    router.push("/");
+    const userId = user.id || user._id
+    dispatch(clearCart())
+    dispatch(fetchCart(userId))
+    router.push("/")
   }
-}, [user, router]);
+}, [user, router,dispatch]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-400 ">

@@ -11,6 +11,7 @@ export interface Product {
   type: string;
   status: string;
   stock: number;
+  description: string;
 }
 
 interface ProductsState {
