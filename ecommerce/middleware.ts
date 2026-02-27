@@ -4,16 +4,12 @@ export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const { pathname } = req.nextUrl;
 
-  const isPublicRoute =
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/register");
-
-  if (!token && !isPublicRoute) {
+  const protectedRoutes = 
+      pathname.startsWith("/checkout") ||
+      pathname.startsWith("/profile") 
+      
+      if (!token && protectedRoutes) {
     return NextResponse.redirect(new URL("/login", req.url));
-  }
-
-  if (token && isPublicRoute) {
-    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();

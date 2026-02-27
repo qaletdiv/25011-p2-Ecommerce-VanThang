@@ -10,6 +10,9 @@ import MobileMenu from './MobileMenu';
 import { useAppSelector } from '@/lib/redux/hooks';
 import LogoutClient from './LogoutClient';
 import SignInClient from './SignInClient';
+import { LogInIcon } from 'lucide-react';
+import Link from 'next/link';
+import LogInClient from './LogInClient';
 
 const Header = async () => {
 
@@ -30,7 +33,7 @@ const Header = async () => {
           <CartIcon />
           <FavoriteButton />
            <SignInClient/>
-          <LogoutClient/>
+           <LogInClient/>
         </div>
       </Container>
     </header>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCart, addToCart, removeFromCart } from "./cartsThunk";
+import { fetchCart, addToCart, removeFromCart, removeAllFromCart } from "./cartsThunk";
 
 interface CartState {
   items: any[];
@@ -38,14 +38,34 @@ const cartSlice = createSlice({
       })
 
       .addCase(addToCart.fulfilled, (state, action) => {
-        state.items.push(action.payload.item);
+        const newItem = action.payload.item
+        const existing = state.items.find(i => i.id === newItem.id )
+        if(existing){
+          existing.quantity = newItem.quantity
+        } 
+        else{
+          state.items.push(newItem)
+        }
+      })
+      .addCase(removeAllFromCart.fulfilled, (state, action) => {
+        state.items = state.items.filter(
+          (item) => item.id !== action.payload.itemId
+        )
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
-        state.items = state.items.filter(
-          (i) => i.id !== action.payload.itemId
-        );
-      });
+  const updated = action.payload
+
+  const existing = state.items.find(i => i.id === updated.id)
+
+  if (updated.quantity <= 0) {
+    state.items = state.items.filter(i => i.id !== updated.id)
+  } else if (existing) {
+    existing.quantity = updated.quantity
+  }
+})
+
   },
+  
 });
 
 export const {clearCart} = cartSlice.actions

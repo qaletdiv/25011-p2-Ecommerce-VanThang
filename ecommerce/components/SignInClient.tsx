@@ -20,7 +20,7 @@ const SignInClient = () => {
 
   if (user) {
     return (
-      <Link href={"/shop"} className="text-sm font-semibold">
+      <Link href={"/order-history"} className="text-sm font-semibold">
         Hi, {user.name}
       </Link>
     );
