@@ -26,6 +26,16 @@ const OrderHistory = () => {
         <h2 className='text-center font-semibold text-2xl md:text-3xl my-4 text-shop-dark-green'>
             Order history
         </h2>
+        <div>
+            {order.slice(0,1).map((u) => (
+                <div key={u.id} >
+                <h1 className='text-2xl font-semibold' >User Info:</h1>
+                <p>Name:{u.nameUser}</p>
+                <p>Phone: {u.phone}</p>
+                <p>Address: {u.address}</p>
+                </div>
+            ) )}
+        </div>
 
         <ul className='border rounded overflow-hidden'>
 

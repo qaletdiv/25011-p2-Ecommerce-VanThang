@@ -21,7 +21,7 @@ const HomeCategories = () => {
                                 border-shop-orange/30 hover:border-shop-orange hoverEffect w-20 h-20 p-1 ' >
                                     <Link href={`/category/${product.id}`} >
                                         <Image  
-                                            src={product.image}
+                                            src={product.image[0]}
                                             alt = "categoryImage"
                                             width={500}
                                             height={500}

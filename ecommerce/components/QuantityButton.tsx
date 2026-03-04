@@ -18,9 +18,9 @@ interface Props{
 
 const QuantityButton = ({userId,itemId,product,productId,quantity, className}: Props ) => {
     const dispatch = useAppDispatch();
-    const isOutOfStock = product.stock === 0
+    const isMaxQuantity = quantity >= product.stock
     const handlePlus = () => {
-        if(isOutOfStock) return
+        if(isMaxQuantity) return
 
         dispatch(addToCart({
             userId,
@@ -50,7 +50,7 @@ const QuantityButton = ({userId,itemId,product,productId,quantity, className}: P
     <div className={cn("flex items-center gap-1 pb-1 test-base",className)} >
         <Button variant="outline"
             size="icon" 
-            disabled= {productId === 0 || isOutOfStock }
+            disabled= {productId === 0 || isMaxQuantity }
             className='w-6 h-6 border-1px hover:bg-shop-dark-green/20 hoverEffect '
             onClick={handlePlus}
         >

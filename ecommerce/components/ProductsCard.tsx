@@ -17,7 +17,7 @@ const ProductsCard = ({product}:Props ) => {
            <Link key={product.id} href={`/products/${product.id}`} >
             {product?.image && (
                 <Image                 
-                    src={product.image}
+                    src={product.image[0]}
                     alt={product.name}
                     loading='lazy'
                     width={300}

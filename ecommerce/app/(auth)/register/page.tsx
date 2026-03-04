@@ -3,8 +3,9 @@ import "../../globals.css";
 import { registerThunk } from "@/lib/redux/auth/authThunk";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function RegisterPage() {
   const dispatch = useAppDispatch();
@@ -14,17 +15,30 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConFirmPassword] = useState("")
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if(password !== confirmPassword) {
+      toast.error("Passwords don't match")
+      return
+    }
+
     dispatch(registerThunk({ name, email, password}));
+
+
   };
 
  useEffect(() => {
-  if (token) {
-    router.push("/login");
+  if(success){
+    toast.success("Register successfully!")
+    const timer = setTimeout(() => {
+      router.push("/login");
+    },1500 )
+    return () => clearTimeout(timer)
   }
-}, [token]);
+}, [success, router]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-400">
@@ -57,6 +71,14 @@ export default function RegisterPage() {
           className="border px-3 py-2 rounded"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          className="border px-3 py-2 rounded"
+          value={confirmPassword}
+          onChange={(e) => setConFirmPassword(e.target.value)}
           required
         />
         {success && <p className="text-green-600 text-sm" >{success}</p> }

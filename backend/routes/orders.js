@@ -1,18 +1,21 @@
 import express from "express"
 import { cartsData } from "../data/carts.js"
-
+import { productsData } from "../data/products.js"
 const router = express.Router()
 
 let ordersData = {}
 
-router.get("/:userId", (req,res) => {
-  const {userId} = req.params
-  res.json(ordersData[userId] || [] )
-} )
+router.get("/:userId", (req, res) => {
+  const { userId } = req.params
+
+  const userOrders = ordersData[userId] || []
+
+  res.json(userOrders)
+})
 
 router.post("/:userId", (req, res) => {
   const { userId } = req.params
-  const { address,phone } = req.body
+  const { address, phone, nameUser } = req.body
 
   const cart = cartsData[userId]
 
@@ -20,12 +23,31 @@ router.post("/:userId", (req, res) => {
     return res.status(400).json({ message: "Cart is empty" })
   }
 
-  if (!address) {
-    return res.status(400).json({ message: "Address required" })
+  if (!address) return res.status(400).json({ message: "Address required" })
+  if (!phone) return res.status(400).json({ message: "Phone required" })
+  if (!nameUser) return res.status(400).json({ message: "Name required" })
+
+  for (const item of cart) {
+    const product = productsData.find(p => p.id == item.productId)
+
+    if (!product || product.stock < item.quantity) {
+      return res.status(400).json({
+        message: `Not enough stock for ${product?.name}`
+      })
+    }
   }
-  if(!phone){
-    return res.status(400).json({message: "Phone required"})
+  cart.forEach(item => {
+    const product = productsData.find(p => p.id == item.productId)
+    if (!product) {
+    throw new Error("Product not found")
   }
+
+  if (product.stock < item.quantity) {
+    throw new Error(`Not enough stock for ${product.name}`)
+  }
+
+  product.stock -= item.quantity
+})
 
   const total = cart.reduce((sum, item) => {
     return sum + item.product.price * item.quantity
@@ -36,9 +58,10 @@ router.post("/:userId", (req, res) => {
     userId,
     items: cart,
     total,
+    nameUser,
     phone,
     address,
-    status: "pending",
+    status: "paid", 
     createdAt: new Date()
   }
 

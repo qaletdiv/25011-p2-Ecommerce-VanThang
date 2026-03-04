@@ -48,14 +48,14 @@ const CartPage = () => {
         <div className='lg:col-span-2 rounded-lg '>
           <div className='border bg-white rounded-md'>
             {cartItems.map((item) => (
-              <div key={item.id} className="border-b p-2.5 last:border-b-0 flex items-center justify-between">
+              <div key={item._id} className="border-b p-2.5 last:border-b-0 flex items-center justify-between">
                 <div className='flex flex-1 items-start gap-2 h-26 md:h-44 '  >
                    {item.product?.image && (
                   <Link href={`/products/${item.product.id}`} 
                       className='border p-0.5 md:p-1 rounded-md overflow-hidden group'
                   >
                     <Image
-                      src={item.product.image}
+                      src={item.product.image[0]}
                       alt={item.product.name}
                       width={500}
                       height={500}
@@ -146,7 +146,6 @@ const CartPage = () => {
           
 
         </div>
-        {/* moblie css */}
         <div className='md:hidden fixed bottom-0 left-0 w-full bg-white pt-2 ' >
           <div className='bg-white p-4 rounded-lg border mx-4' >
             <h2>Order</h2>

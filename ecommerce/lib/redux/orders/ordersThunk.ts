@@ -4,11 +4,11 @@ import { createOrderApi, fetchOrderApi } from "../../api/ordersApi"
 export const createOrder = createAsyncThunk(
   "orders/create",
   async (
-    { userId, address, phone }: { userId: string; address: string, phone: string },
+    { userId, address, phone, nameUser }: { userId: string; address: string, phone: string, nameUser: string },
     { rejectWithValue }
   ) => {
     try {
-      const res = await createOrderApi(userId, address, phone)
+      const res = await createOrderApi(userId, address, phone, nameUser )
       return res.data
     } catch (err: any) {
       return rejectWithValue("Order failed")
