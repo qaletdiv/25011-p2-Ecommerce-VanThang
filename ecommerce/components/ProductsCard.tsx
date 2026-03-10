@@ -92,6 +92,6 @@ const ProductsCard = ({product}:Props ) => {
             </div>
     </div>
   )
-}
+} 
 
 export default ProductsCard

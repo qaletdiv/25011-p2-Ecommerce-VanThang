@@ -14,6 +14,8 @@ const priceArray = [
   { title: "$200 - $300", value: "200-300" },
   { title: "$300 - $500", value: "300-500" },
   { title: "Over $500", value: "500-10000" },
+  {title: "Price: Low -> High", value: "asc" },
+  {title: "Price: High -> Low ", value: "desc" }
 ];
 
 const PriceList = ({value, onChange}:Props ) => {

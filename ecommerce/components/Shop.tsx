@@ -39,12 +39,12 @@ const Shop = () => {
 
   const priceRange = parsePrice(price)
 
-  const filteredItems = items.filter((p) => {
+  let filteredItems = items.filter((p) => {
     const matchCategory = category
       ? p.type?.toLowerCase() === category.toLowerCase()
       : true
 
-    const matchPrice = priceRange
+    const matchPrice = priceRange && price !== "asc" && price !== "desc"
       ? p.price >= priceRange.min &&
         p.price <= priceRange.max
       : true
@@ -52,7 +52,18 @@ const Shop = () => {
     return matchCategory && matchPrice
   })
 
-  // Pagination logic
+  if (price === "asc") {
+  filteredItems = [...filteredItems].sort(
+    (a, b) => a.price - b.price
+  );
+}
+
+if (price === "desc") {
+  filteredItems = [...filteredItems].sort(
+    (a, b) => b.price - a.price
+  );
+}
+
   const totalPages = Math.ceil(
     filteredItems.length / itemsPerPage
   )

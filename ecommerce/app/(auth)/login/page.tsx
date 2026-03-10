@@ -32,6 +32,10 @@ export default function LoginPage() {
   }
 }, [user, router,dispatch]);
 
+useEffect(() => {
+  dispatch(clearAuth());
+}, [dispatch]);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-400 ">
       <form

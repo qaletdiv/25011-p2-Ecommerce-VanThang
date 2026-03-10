@@ -24,7 +24,8 @@ const authSlice = createSlice({
     clearAuth(state) {
       state.user = null;
       state.error = null;
-        state.token = null;
+      state.token = null;
+      state.success = null;
     },
   },
   extraReducers: (builder) => {
@@ -46,6 +47,7 @@ const authSlice = createSlice({
       .addCase(registerThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.success = null
 
       })
       .addCase(registerThunk.fulfilled, (state, action) => {
